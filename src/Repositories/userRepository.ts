@@ -5,18 +5,18 @@ import User from "../Dto/userDto";
 export class UserRepository{
     static async registerUser(user:User): Promise<void>{
         try{
-            const { email, userName, pass} = user;
-            await db.query('INSERT INTO users(email, username, pass) VALUES(?,?,?)',
-                [email, userName, pass]);
+            const { email, username, pass} = user;
+            await db.query('INSERT INTO users(email, username, password ) VALUES(?,?,?)',
+                [email, username, pass]);
         }catch(error){
             console.error('Error register user:', error);
             throw new Error('Could not register user in database');
         }
     }
 
-    static async loginUser(email: string, pass:string): Promise<User | null>{
-        const [ rows ] = await db.query<RowDataPacket[]>('SELECT * FROM users WHERE email = ? and pass = ?', 
-            [email, pass ])
+    static async loginUser(email: string, password:string): Promise<User | null>{
+        const [ rows ] = await db.query<RowDataPacket[]>('SELECT * FROM users WHERE email = ? and password = ?', 
+            [email, password ])
         return rows.length > 0 ? (rows[0] as User) : null
     }
 

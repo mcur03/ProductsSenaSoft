@@ -22,13 +22,11 @@ export class ProductoRepository{
             console.error('Error fetching products:', error);
             throw new Error('Could not fetch products from the database');
         }
-
-        
     }
 
     static async createProduct(product: Product): Promise<void>{
         try{
-            const { name, description, price } = product;
+            const { description,name, price } = product;
             await db.query('INSERT INTO product(nameP, descriptionP, price) VALUES(?,?,?)',
             [name, description, price]);
         }catch(error){

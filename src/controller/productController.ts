@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ProductoRepository } from '../Repositories/productoRepository';
+import Product from "../Dto/productDto";
 
 export class ProductController {
     static async getAll(_req: Request, res: Response){
@@ -10,7 +11,6 @@ export class ProductController {
             console.error('Error fetching the products:', error);
             res.status(500).json({ message: 'Failed to retrieve products', error});
         }
-
         
     }
 
@@ -33,7 +33,11 @@ export class ProductController {
 
     static async create(req:Request, res:Response){
         try{
-            const product = req.body;
+            const {  nameP, descriptionP, price } = req.body;
+            console.log(req.body)
+            
+            let product:Product = new Product(nameP, descriptionP, price)
+
             await ProductoRepository.createProduct(product);
             res.status(201).json({message: 'Product created'});
         }catch(error){
@@ -46,7 +50,7 @@ export class ProductController {
 
     static async delete(req:Request, res:Response){
         try{
-            const { id } = req.params;
+            const { id } = req.params;   
             await ProductoRepository.deleteProduct(Number(id))
             res.json({message: 'Product deleted '})
         }catch(error){

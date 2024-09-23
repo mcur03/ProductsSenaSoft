@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/products', validarToken, ProductController.getAll);
 router.get('/products/search', validarToken, ProductController.getByName);
-router.post('/products', validarToken, validateProduct, ProductController.create);
+router.post('/productsCreate', validarToken, ProductController.create);
 router.delete('/products/:id', validarToken, validateProductExists, ProductController.delete)
 
 

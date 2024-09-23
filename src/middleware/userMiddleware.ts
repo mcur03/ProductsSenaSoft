@@ -45,7 +45,7 @@ export const validateUserRegistration = [
                 throw new Error('El nombre de usuario ya está en uso');
             }
         }),
-    body('pass')
+    body('password')
         .isLength({ min: 8 }).withMessage('La contraseña debe tener al menos 8 caracteres'),
     (req: Request, res: Response, next: NextFunction) => {
         const errors = validationResult(req);

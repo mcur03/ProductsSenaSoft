@@ -2,9 +2,16 @@ import { Request, Response, NextFunction } from "express";
 import db from "../config/db";
 
 export const validateProduct = (req:Request, res:Response, next:NextFunction) => {
-    const { name, price } = req.body;
+    const {  nameP, descriptionP, price } = req.body;
 
-    if(!name || typeof name !== 'string'){
+    console.log(req.body);
+    
+
+    if(!descriptionP || typeof descriptionP !== 'string'){
+        return res.status(400).json({message: 'Invalid product description'})
+    }
+
+    if(!nameP || typeof nameP !== 'string'){
         return res.status(400).json({message: 'Invalid product name'})
     }
 

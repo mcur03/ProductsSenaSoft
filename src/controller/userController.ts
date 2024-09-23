@@ -16,9 +16,9 @@ export class UserController{
     }
 
     static async login(req:Request, res:Response){
-        const { email, pass } = req.body
+        const { email, password } = req.body
 
-        const user = await UserRepository.loginUser(email, pass);
+        const user = await UserRepository.loginUser(email, password);
         if (!user) {
             return res.status(400).json({ message: 'Credenciales inválidas' });
         }

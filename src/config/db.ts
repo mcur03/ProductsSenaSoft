@@ -13,13 +13,14 @@ const db = mysql.createPool({
     queueLimit: 0,
 });
 
-// db.connect((err)=>{
-//     if(err){
-//         console.error('Error al conectar a la base de datos: ', err.message);
-//         return;
-//     }else{
-//         console.log('Conectado a la base de datos');
-//     }
-// })
-
+async function checkConnection() {
+    try {
+        const connetion = await db.getConnection();
+        console.log('Conectado a la base de datos');
+        connetion.release();
+    } catch (error) {
+        console.error('Error al conectar a la base de datos', error);
+    }
+}
+checkConnection();
 export default db;

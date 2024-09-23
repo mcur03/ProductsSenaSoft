@@ -1,15 +1,15 @@
 class User{
     private _email: string;
-    private _userName: string;
+    private _username: string;
     private _pass: string;
 
     constructor(
         email:string,
-        userName:string,
+        username:string,
         pass:string
     ){
         this._email = email;
-        this._userName = userName;
+        this._username = username;
         this._pass = pass;
     }
 
@@ -17,8 +17,8 @@ class User{
     get email():string{
         return this._email;
     }
-    get userName():string{
-        return this._userName;
+    get username():string{
+        return this._username;
     }
     get pass():string{
         return this._pass;
@@ -27,8 +27,8 @@ class User{
     set email(email:string){
         this._email = email;
     }
-    set userName(userName:string){
-        this._userName = userName;
+    set userName(username:string){
+        this._username = username;
     }
     set pass(pass:string){
         this._pass = pass;
